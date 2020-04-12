@@ -1,19 +1,13 @@
 using System.IO;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore;
 using SampleMVCWithCQS2Core.DataAccess;
 using Microsoft.Extensions.DependencyInjection;
 using Polly;
-using System.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SampleMVCWithCQS2
 {
@@ -33,9 +27,7 @@ namespace SampleMVCWithCQS2
 
                 try
                 {
-                    context.Database.EnsureCreated();
                     context.Database.Migrate();
-
                 }
                 catch (Exception ex)
                 {

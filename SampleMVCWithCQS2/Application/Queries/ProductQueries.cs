@@ -1,7 +1,7 @@
 namespace SampleMVCWithCQS2.Application.Queries
 {
     using System.Collections.Generic;
-    using System.Data.SqlClient;
+    using System.Data.SQLite;
     using System.Threading.Tasks;
     using System;
     using Dapper;
@@ -19,7 +19,7 @@ namespace SampleMVCWithCQS2.Application.Queries
 
         public async Task<List<Product>> GetAllProducts()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
                 var results = await connection.QueryAsync<dynamic>(
@@ -37,7 +37,7 @@ namespace SampleMVCWithCQS2.Application.Queries
 
         public async Task<Product> GetProductAsync(int id)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SQLiteConnection(_connectionString))
             {
                 connection.Open();
                 var result = await connection.QueryAsync<dynamic>(
@@ -61,9 +61,9 @@ namespace SampleMVCWithCQS2.Application.Queries
                 Id = result[0].Id,
                 Name = result[0].Name,
                 Category = result[0].Category,
-                Price = result[0].Price,
+                Price = Convert.ToDecimal(result[0].Price),
                 Color = ((Colors)((int)result[0].Color)).ToString(),
-                InStock = result[0].InStock
+                InStock = result[0].InStock != 0
             };
 
             return product;
@@ -79,9 +79,9 @@ namespace SampleMVCWithCQS2.Application.Queries
                     Id = result.Id,
                     Name = result.Name,
                     Category = result.Category,
-                    Price = result.Price,
+                    Price = Convert.ToDecimal(result.Price),
                     Color = ((Colors)((int)result.Color)).ToString(),
-                    InStock = result.InStock
+                    InStock = result.InStock != 0
                 };
                 products.Add(product);
             }

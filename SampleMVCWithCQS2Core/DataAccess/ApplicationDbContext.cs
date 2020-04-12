@@ -1,11 +1,12 @@
-﻿using System.Data;
-using SampleMVCWithCQS2Core.Domain;
-using Microsoft.EntityFrameworkCore;
-using SampleMVCWithCQS2Core.DataAccess.EntityConfiguration;
-using Microsoft.EntityFrameworkCore.Design;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using System.Threading;
+
+using Microsoft.EntityFrameworkCore;
+
 using MediatR;
+
+using SampleMVCWithCQS2Core.DataAccess.EntityConfiguration;
+using SampleMVCWithCQS2Core.Domain;
 
 namespace SampleMVCWithCQS2Core.DataAccess
 {
@@ -36,16 +37,5 @@ namespace SampleMVCWithCQS2Core.DataAccess
         }
 
         public DbSet<Product> Products { get; set; }
-    }
-
-    public class OrderingContextDesignFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
-    {
-        public ApplicationDbContext CreateDbContext(string[] args)
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseSqlServer("Data Source=192.168.1.81; User Id=sa; Password=12345678; Initial Catalog=ProductDb; Connect Timeout=200000;Encrypt=False;TrustServerCertificate=False;MultipleActiveResultSets=True");
-
-            return new ApplicationDbContext(optionsBuilder.Options);
-        }
     }
 }

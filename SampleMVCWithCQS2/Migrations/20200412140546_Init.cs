@@ -1,20 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SampleMVCWithCQS2Core.Migrations
+namespace SampleMVCWithCQS2.Migrations
 {
     public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateSequence(
-                name: "productseq",
-                incrementBy: 10);
-
             migrationBuilder.CreateTable(
                 name: "products",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: false),
                     Category = table.Column<string>(nullable: false),
                     Price = table.Column<decimal>(nullable: false),
@@ -31,9 +28,6 @@ namespace SampleMVCWithCQS2Core.Migrations
         {
             migrationBuilder.DropTable(
                 name: "products");
-
-            migrationBuilder.DropSequence(
-                name: "productseq");
         }
     }
 }

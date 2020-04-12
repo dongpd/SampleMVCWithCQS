@@ -2,7 +2,6 @@ using System;
 
 using Microsoft.EntityFrameworkCore;
 
-using SampleMVCWithCQS2Core.DataAccess;
 using SampleMVCWithCQS2Core.Domain;
 namespace SampleMVCWithCQS2Core.DataAccess.EntityConfiguration
 {
@@ -12,8 +11,6 @@ namespace SampleMVCWithCQS2Core.DataAccess.EntityConfiguration
         {
             productConfiguration.ToTable("products");
             productConfiguration.HasKey(o => o.Id);
-            productConfiguration.Property(o => o.Id)
-                .UseHiLo("productseq");
             productConfiguration.Property<string>("Name")
                 .UsePropertyAccessMode(PropertyAccessMode.Property)
                 .HasColumnName("Name")
@@ -26,11 +23,7 @@ namespace SampleMVCWithCQS2Core.DataAccess.EntityConfiguration
                 .UsePropertyAccessMode(PropertyAccessMode.Property)
                 .HasColumnName("Price")
                 .IsRequired();
-            // productConfiguration.Property<Enum>("Color")
-            //     .UsePropertyAccessMode(PropertyAccessMode.Property)
-            //     .HasColumnName("Color")
-            //     .IsRequired();
-                            productConfiguration.Property(b => b.Color).IsRequired();
+            productConfiguration.Property(b => b.Color).IsRequired();
 
             productConfiguration.Property<bool>("InStock")
                 .UsePropertyAccessMode(PropertyAccessMode.Property)
