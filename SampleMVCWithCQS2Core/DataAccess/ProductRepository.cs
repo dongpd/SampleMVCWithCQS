@@ -1,0 +1,49 @@
+namespace SampleMVCWithCQS2Core.DataAccess
+{
+    using System.Threading.Tasks;
+    using SampleMVCWithCQS2Core.Domain;
+    using Microsoft.EntityFrameworkCore;
+    using System.Linq;
+
+    public class ProductRepository : IProductRepository
+    {
+        private readonly ApplicationDbContext _applicationDbContext;
+
+        public IUnitOfWork UnitOfWork
+        {
+            get
+            {
+                return _applicationDbContext;
+            }
+        }
+        public ProductRepository(ApplicationDbContext applicationDbContext)
+        {
+            this._applicationDbContext = applicationDbContext;
+        }
+
+        public Product Add(Product product)
+        {
+            return _applicationDbContext.Products.Add(product).Entity;
+        }
+
+        public void Update(Product product)
+        {
+            _applicationDbContext.Entry(product).State = EntityState.Modified;
+        }
+
+        public async Task<Product> GetAsync(int productId)
+        {
+            var product = await _applicationDbContext.Products.FirstOrDefaultAsync(p => p.Id == productId);
+            if (product == null)
+            {
+                product = _applicationDbContext.Products.Local.FirstOrDefault(p => p.Id == productId);
+            }
+            return product;
+        }
+
+        public void Remove(Product product)
+        {
+            _applicationDbContext.Products.Remove(product);
+        }
+    }
+}

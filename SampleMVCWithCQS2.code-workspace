@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "SampleMVCWithCQS2"
+		},
+		{
+			"path": "SampleMVCWithCQS2Core"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "SampleMVCWithCQS2"
+	}
+}
