@@ -58,11 +58,11 @@ namespace SampleMVCWithCQS2.Application.Queries
         {
             var product = new Product
             {
-                Id = result[0].Id,
+                Id = Convert.ToInt32(result[0].Id),
                 Name = result[0].Name,
                 Category = result[0].Category,
                 Price = Convert.ToDecimal(result[0].Price),
-                Color = ((Colors)((int)result[0].Color)).ToString(),
+                Color = ((Colors)(result[0].Color)).ToString(),
                 InStock = result[0].InStock != 0
             };
 
@@ -76,11 +76,11 @@ namespace SampleMVCWithCQS2.Application.Queries
             {
                 var product = new Product
                 {
-                    Id = result.Id,
+                    Id = Convert.ToInt32(result.Id),
                     Name = result.Name,
                     Category = result.Category,
                     Price = Convert.ToDecimal(result.Price),
-                    Color = ((Colors)((int)result.Color)).ToString(),
+                    Color = ((Colors)(result.Color)).ToString(),
                     InStock = result.InStock != 0
                 };
                 products.Add(product);

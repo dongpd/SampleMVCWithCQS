@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+
+using AutoMapper;
+
+using MediatR;
+
+using SampleMVCWithCQS2.Application.Commands;
 using SampleMVCWithCQS2.Application.Queries;
 using SampleMVCWithCQS2.Models;
-using SampleMVCWithCQS2.Application.Commands;
-using MediatR;
-using AutoMapper;
+
 
 
 namespace SampleMVCWithCQS2.Controllers
@@ -38,7 +39,7 @@ namespace SampleMVCWithCQS2.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            var product = new Product();
+            var product = new Product() { IsNew = true };
             return View(product);
         }
 

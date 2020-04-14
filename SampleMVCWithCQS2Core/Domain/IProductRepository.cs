@@ -14,5 +14,9 @@ namespace SampleMVCWithCQS2Core.Domain
         void Remove(Product product);
 
         Task<Product> GetAsync(int productId);
+
+        Product Get(int productId);
+
+        bool IsNameExisted(string name);
     }
 }

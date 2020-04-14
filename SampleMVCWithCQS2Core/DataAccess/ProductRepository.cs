@@ -41,9 +41,24 @@ namespace SampleMVCWithCQS2Core.DataAccess
             return product;
         }
 
+        public Product Get(int productId)
+        {
+            var product = _applicationDbContext.Products.FirstOrDefault(p => p.Id == productId);
+            if (product == null)
+            {
+                product = _applicationDbContext.Products.Local.FirstOrDefault(p => p.Id == productId);
+            }
+            return product;
+        }
+
         public void Remove(Product product)
         {
             _applicationDbContext.Products.Remove(product);
+        }
+
+        public bool IsNameExisted(string name)
+        {
+            return _applicationDbContext.Products.Any(p => p.Name == name);
         }
     }
 }
