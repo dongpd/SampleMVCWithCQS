@@ -9,9 +9,13 @@ using Microsoft.Extensions.Hosting;
 
 using AutoMapper;
 
+using FluentValidation;
+using FluentValidation.AspNetCore;
+
 using MediatR;
 
 using SampleMVCWithCQS2.Application.Queries;
+using SampleMVCWithCQS2.Application.Validators;
 
 using SampleMVCWithCQS2Core.DataAccess;
 
@@ -34,7 +38,11 @@ namespace SampleMVCWithCQS2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            IMvcBuilder builder = services.AddMvc();
+            IMvcBuilder builder = services.AddMvc().AddFluentValidation(fv =>
+            {
+                fv.RegisterValidatorsFromAssemblyContaining<ProductValidator>();
+                fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+            });
 #if DEBUG
             if (Env.IsDevelopment())
             {
