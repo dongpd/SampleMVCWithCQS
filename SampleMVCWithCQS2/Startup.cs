@@ -2,6 +2,10 @@ using System.Reflection;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+
+using Microsoft.AspNetCore.Identity;
+
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,9 +20,10 @@ using MediatR;
 
 using SampleMVCWithCQS2.Application.Queries;
 using SampleMVCWithCQS2.Application.Validators;
+using SampleMVCWithCQS2.Infrastructure.Factory;
+using SampleMVCWithCQS2.Migrations;
 
 using SampleMVCWithCQS2Core.DataAccess;
-
 using SampleMVCWithCQS2Core.Domain;
 
 
@@ -49,27 +54,28 @@ namespace SampleMVCWithCQS2
                 builder.AddRazorRuntimeCompilation();
             }
 #endif
-            services.AddDbContext<ApplicationDbContext>(options =>
-            {
-                // options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"],
-                // sqlServerOptionsAction: sqlOptions =>
-                // {
-                //     sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
-                //     sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
-                // });
+            services.AddDbContext<ApplicationDbContext>(options => {
                 options.UseSqlite(Configuration["ConnectionStrings:SqliteConnection"],
                 sqliteOptionsAction: sqlOptions =>
                    {
                        sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
                    });
-            },
-            ServiceLifetime.Scoped //Showing explicitly that the DbContext is shared across the HTTP request scope (graph of objects started in the HTTP request)
+                },
+                ServiceLifetime.Scoped
             );
             services.AddMediatR(typeof(Startup));
             services.AddAutoMapper(typeof(Startup));
             services.AddMediatorHandlers(typeof(Startup).GetTypeInfo().Assembly);
             services.AddScoped<IProductQueries>(s => new ProductQueries(Configuration["ConnectionStrings:SqliteConnection"]));
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddIdentity<User, IdentityRole>(opt =>
+            {
+                opt.Password.RequiredLength = 7;
+                opt.Password.RequireDigit = false;
+                opt.Password.RequireUppercase = false;
+                opt.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddScoped<IUserClaimsPrincipalFactory<User>, CustomClaimsFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,7 +85,6 @@ namespace SampleMVCWithCQS2
             {
                 app.UseDeveloperExceptionPage();
                 SeedData.Seed(dbContext);
-
             }
             else
             {
@@ -92,6 +97,7 @@ namespace SampleMVCWithCQS2
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

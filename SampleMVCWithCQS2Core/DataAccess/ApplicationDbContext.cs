@@ -7,10 +7,10 @@ using MediatR;
 
 using SampleMVCWithCQS2Core.DataAccess.EntityConfiguration;
 using SampleMVCWithCQS2Core.Domain;
-
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 namespace SampleMVCWithCQS2Core.DataAccess
 {
-    public class ApplicationDbContext : DbContext, IUnitOfWork
+    public class ApplicationDbContext : IdentityDbContext<User>, IUnitOfWork
     {
         public const string DEFAULT_SCHEMA = "producting";
         private readonly IMediator _mediator;
@@ -26,7 +26,9 @@ namespace SampleMVCWithCQS2Core.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new ProductEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
         }
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)

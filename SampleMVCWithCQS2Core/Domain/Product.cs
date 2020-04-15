@@ -26,4 +26,5 @@ namespace SampleMVCWithCQS2Core.Domain
 
         public Product(){}
     }
+    
 }

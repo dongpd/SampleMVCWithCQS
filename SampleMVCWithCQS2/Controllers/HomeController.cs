@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Authorization;
+
 using Microsoft.AspNetCore.Mvc;
 
 using AutoMapper;
@@ -10,9 +12,8 @@ using MediatR;
 
 using SampleMVCWithCQS2.Application.Commands;
 using SampleMVCWithCQS2.Application.Queries;
+
 using SampleMVCWithCQS2.Models;
-
-
 
 namespace SampleMVCWithCQS2.Controllers
 {
@@ -21,7 +22,7 @@ namespace SampleMVCWithCQS2.Controllers
     {
         private readonly IProductQueries _productQueries;
         private readonly IMediator _mediator;
-        public readonly IMapper _mapper;
+        private readonly IMapper _mapper;
 
         public HomeController(IProductQueries productQueries, IMediator mediator, IMapper mapper)
         {
@@ -37,6 +38,7 @@ namespace SampleMVCWithCQS2.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Create()
         {
             var product = new Product() { IsNew = true };

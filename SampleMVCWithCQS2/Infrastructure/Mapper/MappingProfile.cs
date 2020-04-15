@@ -15,6 +15,8 @@ namespace SampleMVCWithCQS2.Infrastructure.Mapper
             CreateMap<SampleMVCWithCQS2.Application.Queries.Product, CreateProductCommand>();
             CreateMap<CreateProductCommand, SampleMVCWithCQS2Core.Domain.Product>();
             CreateMap<SampleMVCWithCQS2.Application.Queries.Product, DeleteProductCommand>();
+            CreateMap<UserRegistrationModel, User>()
+            .ForMember(u => u.UserName, opt => opt.MapFrom(x => x.Email));
         }
     }
 }

@@ -8,7 +8,7 @@ using SampleMVCWithCQS2Core.DataAccess;
 using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using Microsoft.EntityFrameworkCore;
-
+using SampleMVCWithCQS2.Migrations;
 namespace SampleMVCWithCQS2
 {
     public class Program
@@ -20,21 +20,7 @@ namespace SampleMVCWithCQS2
             var host = BuildWebHost(configuration, args);
 
             // Migrate
-            using (var scope = host.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-                var context = services.GetRequiredService<ApplicationDbContext>();
-
-                try
-                {
-                    context.Database.Migrate();
-                }
-                catch (Exception ex)
-                {
-                    Console.Error.WriteLine(ex.Message);
-                }
-
-            }
+            host.MigrationDatabase();
             host.Run();
         }
         private static IWebHost BuildWebHost(IConfiguration configuration, string[] args) =>
