@@ -25,8 +25,22 @@ using SampleMVCWithCQS2.Migrations;
 
 using SampleMVCWithCQS2Core.DataAccess;
 using SampleMVCWithCQS2Core.Domain;
+using IdentityServer;
 
-
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 namespace SampleMVCWithCQS2
 {
     public class Startup
@@ -48,19 +62,21 @@ namespace SampleMVCWithCQS2
                 fv.RegisterValidatorsFromAssemblyContaining<ProductValidator>();
                 fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
             });
+
 #if DEBUG
             if (Env.IsDevelopment())
             {
                 builder.AddRazorRuntimeCompilation();
             }
 #endif
-            services.AddDbContext<ApplicationDbContext>(options => {
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
                 options.UseSqlite(Configuration["ConnectionStrings:SqliteConnection"],
                 sqliteOptionsAction: sqlOptions =>
                    {
                        sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
                    });
-                },
+            },
                 ServiceLifetime.Scoped
             );
             services.AddMediatR(typeof(Startup));
@@ -74,8 +90,14 @@ namespace SampleMVCWithCQS2
                 opt.Password.RequireDigit = false;
                 opt.Password.RequireUppercase = false;
                 opt.User.RequireUniqueEmail = true;
-            }).AddEntityFrameworkStores<ApplicationDbContext>();
+            }).AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
             services.AddScoped<IUserClaimsPrincipalFactory<User>, CustomClaimsFactory>();
+            services.AddIdentityServer().AddDeveloperSigningCredential()
+                .AddInMemoryIdentityResources(Config.Ids)
+                .AddInMemoryApiResources(Config.Apis)
+                .AddInMemoryClients(Config.Clients)
+                .AddAspNetIdentity<User>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,7 +118,7 @@ namespace SampleMVCWithCQS2
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseIdentityServer();
             app.UseAuthentication();
             app.UseAuthorization();
 

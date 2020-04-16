@@ -5,6 +5,15 @@
 		},
 		{
 			"path": "SampleMVCWithCQS2Core"
+		},
+		{
+			"path": "Api1"
+		},
+		{
+			"path": "Client"
+		},
+		{
+			"path": "IdentityServerAspNetIdentity"
 		}
 	],
 	"settings": {
