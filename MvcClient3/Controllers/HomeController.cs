@@ -1,17 +1,19 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using MvcClient.Models;
-using Newtonsoft.Json.Linq;
+﻿using System.Diagnostics;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using MvcClient.Models;
-using System.Diagnostics;
+using Microsoft.Extensions.Logging;
 
+using MvcClient.Models;
+using MvcClient.Models;
+
+using Newtonsoft.Json.Linq;
 
 namespace MvcClient.Controllers
 {
