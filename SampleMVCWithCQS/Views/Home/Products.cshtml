@@ -1,0 +1,65 @@
+@model List<SampleMVCWithCQS.Application.Queries.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h1>Products</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Name")
+            </th>
+            <th>
+                @Html.DisplayName("Category")
+            </th>
+            <th>
+                @Html.DisplayName("Price")
+            </th>
+            <th>
+                @Html.DisplayName("Color")
+            </th>
+            <th>
+                @Html.DisplayName("InStock")
+            </th>
+            <th>
+                @Html.DisplayName("Id")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  productId=item.Id  }) |
+                @Html.ActionLink("Details", "Details", new { productId=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { productId=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
