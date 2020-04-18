@@ -1,31 +1,7 @@
 {
 	"folders": [
 		{
-			"path": "SampleMVCWithCQS2"
-		},
-		{
-			"path": "SampleMVCWithCQS2Core"
-		},
-		{
-			"path": "Api1"
-		},
-		{
-			"path": "Client"
-		},
-		{
-			"path": "IdentityServerAspNetIdentity"
-		},
-		{
-			"path": "IdentityServer"
-		},
-		{
-			"path": "MVCClient"
-		},
-		{
-			"path": "Api2"
-		},
-		{
-			"path": "IdentityServer1"
+			"path": "."
 		}
 	],
 	"settings": {
