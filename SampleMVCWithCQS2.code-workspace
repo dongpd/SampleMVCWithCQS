@@ -14,6 +14,18 @@
 		},
 		{
 			"path": "IdentityServerAspNetIdentity"
+		},
+		{
+			"path": "IdentityServer"
+		},
+		{
+			"path": "MVCClient"
+		},
+		{
+			"path": "Api2"
+		},
+		{
+			"path": "IdentityServer1"
 		}
 	],
 	"settings": {
