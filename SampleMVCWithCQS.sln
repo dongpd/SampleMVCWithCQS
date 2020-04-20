@@ -3,39 +3,38 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client1\Client.csproj", "{7F3CA9F8-4B2A-4A02-B879-E058CE2E2904}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client1", "Client1\Client1.csproj", "{7F3CA9F8-4B2A-4A02-B879-E058CE2E2904}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api1", "Api1\Api1.csproj", "{E35ED8C2-07BB-4266-986B-8D9783599B24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api2\Api.csproj", "{0321A9BE-6331-4F20-B2FB-41A57BF84F4E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api2", "Api2\Api2.csproj", "{0321A9BE-6331-4F20-B2FB-41A57BF84F4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCClient2", "MVCClient2\MVCClient.csproj", "{73DBCE5A-F2C7-4D8A-A2E8-FB359B770626}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCClient2", "MVCClient2\MVCClient2.csproj", "{73DBCE5A-F2C7-4D8A-A2E8-FB359B770626}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleMVCWithCQS", "SampleMVCWithCQS\SampleMVCWithCQS.csproj", "{635B1FBC-2457-4DE8-94A0-BAAFFCF9FF55}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleMVCWithCQSCore", "SampleMVCWithCQSCore\SampleMVCWithCQSCore.csproj", "{28F72F16-4353-4667-8DB5-239E0244EC30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcClient3", "MvcClient3\MvcClient.csproj", "{142DDEC9-70A9-43A3-B28D-592FC4F549ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcClient3", "MvcClient3\MvcClient3.csproj", "{142DDEC9-70A9-43A3-B28D-592FC4F549ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api3", "Api3\Api.csproj", "{CA81C16B-101F-47D5-904D-78E515D1C3EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api3", "Api3\Api3.csproj", "{CA81C16B-101F-47D5-904D-78E515D1C3EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer3", "IdentityServer3\IdentityServer.csproj", "{06E5FCD2-DAA5-420A-AB16-AA3C8DF68EF7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer3", "IdentityServer3\IdentityServer3.csproj", "{06E5FCD2-DAA5-420A-AB16-AA3C8DF68EF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api4", "Api4\Api.csproj", "{2BAC10D0-C88B-4B99-8418-3C399A832EB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api4", "Api4\Api4.csproj", "{2BAC10D0-C88B-4B99-8418-3C399A832EB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer4", "IdentityServer4\IdentityServer.csproj", "{DCC42A52-3F78-4EF5-9805-A7A2EE3F623E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api6", "Api6\Api.csproj", "{AC112ECC-9051-4220-94B5-DCB331567153}"
+
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api6", "Api6\Api6.csproj", "{AC112ECC-9051-4220-94B5-DCB331567153}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServerAspNetIdentity", "IdentityServer6\IdentityServerAspNetIdentity.csproj", "{DC04B1BC-F73D-4FEC-8F60-779061947156}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcClient6", "MvcClient6\MvcClient.csproj", "{BA99A2A2-29F1-4E0E-BCBF-872ED9C79964}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcClient6", "MvcClient6\MvcClient6.csproj", "{BA99A2A2-29F1-4E0E-BCBF-872ED9C79964}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcClient", "MvcClient4\MvcClient.csproj", "{FA144898-2C21-479A-B772-ECA7BBA58150}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcClient4", "MvcClient4\MvcClient4.csproj", "{FA144898-2C21-479A-B772-ECA7BBA58150}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptClient", "JavaScriptClient4\JavaScriptClient.csproj", "{086660DC-213A-4670-962E-61CB596D053B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptClient4", "JavaScriptClient4\JavaScriptClient.csproj", "{086660DC-213A-4670-962E-61CB596D053B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer", "IdentityServer2\IdentityServer.csproj", "{33B72A07-1903-401F-A725-12FC1A2FE077}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer2", "IdentityServer2\IdentityServer2.csproj", "{33B72A07-1903-401F-A725-12FC1A2FE077}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

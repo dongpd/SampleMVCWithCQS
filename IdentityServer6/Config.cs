@@ -10,13 +10,24 @@ namespace IdentityServerAspNetIdentity
 {
     public static class Config
     {
-        public static IEnumerable<IdentityResource> Ids =>
-            new List<IdentityResource>
+        public static IEnumerable<IdentityResource> Ids
+        {
+            get
+            {
+                var customProfile = new IdentityResource(
+                        name: "custom.profile",
+                        displayName: "Custom profile",
+                        claimTypes: new[] { "name", "email", "status" });
+                return new List<IdentityResource>
             {
                 new IdentityResources.OpenId(),
+                new IdentityResources.Email(),
                 new IdentityResources.Profile(),
+                new IdentityResources.Phone(),
+                new IdentityResources.Address()
             };
-
+            }
+        }
 
         public static IEnumerable<ApiResource> Apis =>
             new List<ApiResource>
@@ -41,22 +52,24 @@ namespace IdentityServerAspNetIdentity
                 new Client
                 {
                     ClientId = "mvc",
-                    ClientSecrets = { new Secret("secret".Sha256()) },
+                    ClientName = "MVC Client",
+                    AllowedGrantTypes = GrantTypes.Hybrid,
 
-                    AllowedGrantTypes = GrantTypes.Code,
-                    RequireConsent = false,
-                    RequirePkce = true,
-                
-                    // where to redirect to after login
-                    RedirectUris = { "http://localhost:5002/signin-oidc" },
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
 
-                    // where to redirect to after logout
+                    RedirectUris           = { "http://localhost:5002/signin-oidc" },
                     PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
 
-                    AllowedScopes = new List<string>
+                    AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Phone,
+                        IdentityServerConstants.StandardScopes.Address,
+                        IdentityServerConstants.StandardScopes.Email,
                         "api1"
                     },
 
